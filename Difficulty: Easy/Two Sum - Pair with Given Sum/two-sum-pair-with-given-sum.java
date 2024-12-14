@@ -38,20 +38,34 @@ public class Main {
 class Solution {
     boolean twoSum(int arr[], int target) {
         // code here
-         // Time complexity=O(n);
+         // Time complexity=O(nlogn);
          int n = arr.length;
-        Arrays.sort(arr);
-        int low=0;
-        int high=n-1;
-        while(low<high){
-            int sum=arr[low]+arr[high];
-            if(sum==target){
-                return true;
-            }else if(sum>target){
-                high--;
-            }else{
-                low++;
-            }
+        // Arrays.sort(arr);
+        // int low=0;
+        // int high=n-1;
+        // while(low<high){
+        //     int sum=arr[low]+arr[high];
+        //     if(sum==target){
+        //         return true;
+        //     }else if(sum>target){
+        //         high--;
+        //     }else{
+        //         low++;
+        //     }
+        // }
+        // return false;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
+        for(int i = 0 ; i < n ; i++){
+            map.put(arr[i],i);
+        }
+        
+        for(int i = 0 ; i < n ;i++ ){
+           int completed = target - arr[i];
+           
+           if(map.containsKey(completed) && map.get(completed) != i){
+               return true;
+           }
         }
         return false;
     }
